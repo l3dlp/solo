@@ -1,4 +1,4 @@
-# Solo in Go: Block Multiple Cron Job Instances, No-Nonsense Style
+# Solo in Go: Block Multiple Cron Job Instances
 
 ### Objective
 Tired of your cron jobs stepping on each other's toes? Meet <code>solo</code>, a Golang approach of classic https://github.com/timkay/solo project. It's a nifty program that prevents the simultaneous execution of multiple instances of a cron job by binding to a TCP port. If the port is taken, it's a signal for the job to take a break.
@@ -7,7 +7,9 @@ Tired of your cron jobs stepping on each other's toes? Meet <code>solo</code>, a
 <li>Basic knowledge of Go. If you don't know what <code>fmt.Println</code> is, go read a Go tutorial, then come back.</li><li>Go installed on your system. If not, what are you waiting for?</li>
 
 ### How It Works?
-<li><p><strong>Port Check:</strong> First off, we check if the provided port argument is valid. If it’s not a legitimate port number, we pull the plug.</p></li><li><p><strong>Attempt to Bind to the Port:</strong> The program attempts to bind to <code>127.0.0.1</code> on the specified port. If the port is already in use, it means another instance is running, so our job politely steps down.</p></li><li><p><strong>Execute the Command:</strong> If the port is free, the program proceeds to execute the command passed as an argument. We use <code>/bin/bash -c</code> to ensure whatever you throw at it gets properly interpreted, even the weird stuff with pipes and redirects.</p></li>
+<li><strong>Port Check:</strong> First off, we check if the provided port argument is valid. If it’s not a legitimate port number, we pull the plug.</li>
+<li><strong>Attempt to Bind to the Port:</strong> The program attempts to bind to <code>127.0.0.1</code> on the specified port. If the port is already in use, it means another instance is running, so our job politely steps down.</li>
+<li><strong>Execute the Command:</strong> If the port is free, the program proceeds to execute the command passed as an argument. We use <code>/bin/bash -c</code> to ensure whatever you throw at it gets properly interpreted, even the weird stuff with pipes and redirects.</li>
 
 ### The Code
 
